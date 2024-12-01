@@ -1,7 +1,7 @@
 name: yonico-check
 on: push
 jobs:
-  greeting:
+  tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
