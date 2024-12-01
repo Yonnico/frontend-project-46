@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 import { program } from 'commander';
-import { readFile } from '../utils/pathbuilder.js';
-import { compare } from '../utils/compare.js';
+import { readFile } from '../src/pathbuilder.js';
+import { compare } from '../src/compare.js';
 
 program
   .name('gendiff')
@@ -11,13 +11,8 @@ program
   .argument('<filipath1>', 'first file path')
   .argument('<filipath2>', 'second file path')
   .option('-f, --format [type]', 'output format')
-  .action((first, second) => {
-    const file1Content = JSON.parse(readFile(first));
-    const file2Content = JSON.parse(readFile(second));    
-
-    const result = compare(file1Content, file2Content);
-
-    console.log(result);
+  .action((first, second, options) => {
+    console.log(compare(readFile(first), readFile(second), options.format));
   });
 
 program.parse();

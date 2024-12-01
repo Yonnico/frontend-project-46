@@ -1,0 +1,9 @@
+name: yonico-check
+on: push
+jobs:
+  greeting:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: make lint
+      - run: make test
