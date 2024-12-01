@@ -5,5 +5,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Установка Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+      - run: make install
       - run: make lint
       - run: make test
