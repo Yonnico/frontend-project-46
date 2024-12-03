@@ -1,14 +1,12 @@
 import _ from 'lodash';
 
+
 export const compare = (object1, object2) => {
 
-  object1 = JSON.parse(object1);
-  object2 = JSON.parse(object2);
-  
   const keys1 = Object.keys(object1);
   const keys2 = Object.keys(object2);
 
-  const keys = _.union(keys1, keys2);
+  const keys = _.union(keys1, keys2).toSorted();
 
   const result = ['{\n'];
 
