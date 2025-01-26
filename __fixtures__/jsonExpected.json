@@ -1,0 +1,216 @@
+[
+  {
+    "key": "common",
+    "keyPath": "common",
+    "typeDifference": "changed",
+    "oldValue": {
+      "setting1": "Value 1",
+      "setting2": 200,
+      "setting3": true,
+      "setting6": {
+        "key": "value",
+        "doge": {
+          "wow": ""
+        }
+      }
+    },
+    "newValue": {
+      "follow": false,
+      "setting1": "Value 1",
+      "setting3": null,
+      "setting4": "blah blah",
+      "setting5": {
+        "key5": "value5"
+      },
+      "setting6": {
+        "key": "value",
+        "ops": "vops",
+        "doge": {
+          "wow": "so much"
+        }
+      }
+    },
+    "children": [
+      {
+        "key": "follow",
+        "keyPath": "common.follow",
+        "typeDifference": "added",
+        "oldValue": null,
+        "newValue": false,
+        "children": null
+      },
+      {
+        "key": "setting1",
+        "keyPath": "common.setting1",
+        "typeDifference": "unchanged",
+        "oldValue": "Value 1",
+        "newValue": "Value 1",
+        "children": null
+      },
+      {
+        "key": "setting2",
+        "keyPath": "common.setting2",
+        "typeDifference": "deleted",
+        "oldValue": 200,
+        "newValue": null,
+        "children": null
+      },
+      {
+        "key": "setting3",
+        "keyPath": "common.setting3",
+        "typeDifference": "changed",
+        "oldValue": true,
+        "newValue": null,
+        "children": null
+      },
+      {
+        "key": "setting4",
+        "keyPath": "common.setting4",
+        "typeDifference": "added",
+        "oldValue": null,
+        "newValue": "blah blah",
+        "children": null
+      },
+      {
+        "key": "setting5",
+        "keyPath": "common.setting5",
+        "typeDifference": "added",
+        "oldValue": null,
+        "newValue": {
+          "key5": "value5"
+        },
+        "children": null
+      },
+      {
+        "key": "setting6",
+        "keyPath": "common.setting6",
+        "typeDifference": "changed",
+        "oldValue": {
+          "key": "value",
+          "doge": {
+            "wow": ""
+          }
+        },
+        "newValue": {
+          "key": "value",
+          "ops": "vops",
+          "doge": {
+            "wow": "so much"
+          }
+        },
+        "children": [
+          {
+            "key": "doge",
+            "keyPath": "common.setting6.doge",
+            "typeDifference": "changed",
+            "oldValue": {
+              "wow": ""
+            },
+            "newValue": {
+              "wow": "so much"
+            },
+            "children": [
+              {
+                "key": "wow",
+                "keyPath": "common.setting6.doge.wow",
+                "typeDifference": "changed",
+                "oldValue": "",
+                "newValue": "so much",
+                "children": null
+              }
+            ]
+          },
+          {
+            "key": "key",
+            "keyPath": "common.setting6.key",
+            "typeDifference": "unchanged",
+            "oldValue": "value",
+            "newValue": "value",
+            "children": null
+          },
+          {
+            "key": "ops",
+            "keyPath": "common.setting6.ops",
+            "typeDifference": "added",
+            "oldValue": null,
+            "newValue": "vops",
+            "children": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "key": "group1",
+    "keyPath": "group1",
+    "typeDifference": "changed",
+    "oldValue": {
+      "baz": "bas",
+      "foo": "bar",
+      "nest": {
+        "key": "value"
+      }
+    },
+    "newValue": {
+      "foo": "bar",
+      "baz": "bars",
+      "nest": "str"
+    },
+    "children": [
+      {
+        "key": "baz",
+        "keyPath": "group1.baz",
+        "typeDifference": "changed",
+        "oldValue": "bas",
+        "newValue": "bars",
+        "children": null
+      },
+      {
+        "key": "foo",
+        "keyPath": "group1.foo",
+        "typeDifference": "unchanged",
+        "oldValue": "bar",
+        "newValue": "bar",
+        "children": null
+      },
+      {
+        "key": "nest",
+        "keyPath": "group1.nest",
+        "typeDifference": "changed",
+        "oldValue": {
+          "key": "value"
+        },
+        "newValue": "str",
+        "children": null
+      }
+    ]
+  },
+  {
+    "key": "group2",
+    "keyPath": "group2",
+    "typeDifference": "deleted",
+    "oldValue": {
+      "abc": 12345,
+      "deep": {
+        "id": 45
+      }
+    },
+    "newValue": null,
+    "children": null
+  },
+  {
+    "key": "group3",
+    "keyPath": "group3",
+    "typeDifference": "added",
+    "oldValue": null,
+    "newValue": {
+      "deep": {
+        "id": {
+          "number": 45
+        }
+      },
+      "fee": 100500
+    },
+    "children": null
+  }
+]
