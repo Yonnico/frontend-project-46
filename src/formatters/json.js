@@ -1,4 +1,4 @@
-import _ from 'lodash';
+// import _ from 'lodash';
 
 /**
  * @param {Difference[]} difference - Массив различий между объектами
