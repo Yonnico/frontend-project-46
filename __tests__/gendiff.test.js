@@ -22,25 +22,25 @@ describe('Сравнение файлов для формата stylish', () => 
   });
 });
 
-// describe('Сравнение файлов для формата plain', () => {
-//   test('JSON', () => {
-//     const actual = gendiff('__fixtures__/test1.json', '__fixtures__/test2.json', 'plain');
-//     const expected = readFile('__fixtures__/plainExpected.txt');
-//     expect(actual).toEqual(expected);
-//   });
+describe('Сравнение файлов для формата plain', () => {
+  test('JSON', () => {
+    const actual = gendiff('__fixtures__/test1.json', '__fixtures__/test2.json', 'plain');
+    const expected = readFile('__fixtures__/plainExpected.txt');
+    expect(actual).toEqual(expected);
+  });
 
-//   test('YAML', () => {
-//     const actual = gendiff('__fixtures__/test1.yaml', '__fixtures__/test2.yaml', 'plain');
-//     const expected = readFile('__fixtures__/plainExpected.txt');
-//     expect(actual).toEqual(expected);
-//   });
+  test('YAML', () => {
+    const actual = gendiff('__fixtures__/test1.yaml', '__fixtures__/test2.yaml', 'plain');
+    const expected = readFile('__fixtures__/plainExpected.txt');
+    expect(actual).toEqual(expected);
+  });
 
-//   test('YML', () => {
-//     const actual = gendiff('__fixtures__/test1.yml', '__fixtures__/test2.yml', 'plain');
-//     const expected = readFile('__fixtures__/plainExpected.txt');
-//     expect(actual).toEqual(expected);
-//   });
-// });
+  test('YML', () => {
+    const actual = gendiff('__fixtures__/test1.yml', '__fixtures__/test2.yml', 'plain');
+    const expected = readFile('__fixtures__/plainExpected.txt');
+    expect(actual).toEqual(expected);
+  });
+});
 
 // describe('Сравнение файлов для формата json', () => {
 //   test('JSON', () => {

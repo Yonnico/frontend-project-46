@@ -1,9 +1,9 @@
 import _ from 'lodash';
 
 /**
- * @param {unknown} value - Значение для форматирования
+ * @param {unknown} object - Объект для форматирования
  * @param {number} depth - Глубина вложенности (по умолчанию 1)
- * @returns {string} - Строка с форматированным значением
+ * @returns {string} - Строка с форматированным объектом
  */
 const stylishFormatValue = (value, depth = 1) => {
 
@@ -19,10 +19,10 @@ const stylishFormatValue = (value, depth = 1) => {
 
   const result = entries.map(([key, value]) => {
     const valueStr = stylishFormatValue(value, depth + 1);
-    return `\n${currentIndent}${key}: ${valueStr}`;
+    return `${currentIndent}${key}: ${valueStr}`;
   });
 
-  return `{${result.join('')}\n${bracketIndent}}`;
+  return `{\n${result.join('\n')}\n${bracketIndent}}`;
 };
 
 /**
@@ -37,21 +37,21 @@ export const stylish = (difference, depth = 1) => {
 
   const result = difference.map((object) => {
     if (object.typeDifference === 'deleted') {
-      return `\n${indent}- ${object.key}: ${stylishFormatValue(object.oldValue, depth + 1)}`;
+      return `${indent}- ${object.key}: ${stylishFormatValue(object.oldValue, depth + 1)}`;
     }
 
     if (object.typeDifference === 'added') {
-      return `\n${indent}+ ${object.key}: ${stylishFormatValue(object.newValue, depth + 1)}`;
+      return `${indent}+ ${object.key}: ${stylishFormatValue(object.newValue, depth + 1)}`;
     }
 
     if (object.typeDifference === 'unchanged') {
-      return `\n${indent}  ${object.key}: ${stylishFormatValue(object.newValue, depth + 1)}`;
+      return `${indent}  ${object.key}: ${stylishFormatValue(object.newValue, depth + 1)}`;
     }
 
     return object.typeDifference === 'changed' && object.children
-      ? `\n${indent}  ${object.key}: ${stylish(object.children, depth + 1)}`
-      : `\n${indent}- ${object.key}: ${stylishFormatValue(object.oldValue, depth + 1)}\n${indent}+ ${object.key}: ${stylishFormatValue(object.newValue, depth + 1)}`;
+      ? `${indent}  ${object.key}: ${stylish(object.children, depth + 1)}`
+      : `${indent}- ${object.key}: ${stylishFormatValue(object.oldValue, depth + 1)}\n${indent}+ ${object.key}: ${stylishFormatValue(object.newValue, depth + 1)}`;
   });
 
-  return `{${result.join('')}\n${bracketIndent}}`;
+  return `{\n${result.join('\n')}\n${bracketIndent}}`;
 };
