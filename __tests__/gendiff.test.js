@@ -11,10 +11,10 @@ const formatters = {
 
 describe('Сравнение файлов', () => {
   // Тестирование для каждого формата вывода (stylish, plain, json)
-  Object.entries(formatters).forEach(([formatterName, { formatter, expected: expectedPath }]) => {
+  Object.entries(formatters).map(([formatterName, { formatter, expected: expectedPath }]) => {
     describe(`Формат вывода: ${formatterName}`, () => {
       // Тестирование для каждого формата входных файлов (json, yaml, yml)
-      formats.forEach((fileFormat) => {
+      formats.map((fileFormat) => {
         const file1 = `__fixtures__/test1.${fileFormat}`;
         const file2 = `__fixtures__/test2.${fileFormat}`;
 
