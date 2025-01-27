@@ -8,7 +8,7 @@ import { formatter } from "./formatters/index.js";
  * @param {string} format - Формат вывода (по умолчанию "stylish")
  * @returns {string} - Строка с результатом сравнения
  */
-export const gendiff = (filepath1, filepath2, format = "stylish") => {
+export default (filepath1, filepath2, format = "stylish") => {
 
   const file1 = fileParser(filepath1);
   const file2 = fileParser(filepath2);
