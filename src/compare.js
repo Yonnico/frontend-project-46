@@ -64,7 +64,7 @@ const compare = (object1, object2, parentPath = []) => {
         'changed',
         object1[key],
         object2[key],
-        compare(object1[key], object2[key], [...path, key])
+        compare(object1[key], object2[key], [...path, key]),
       );
     }
 
@@ -73,7 +73,7 @@ const compare = (object1, object2, parentPath = []) => {
       currentPath,
       isEqual ? 'unchanged' : 'changed',
       object1[key],
-      object2[key]
+      object2[key],
     );
   };
 
