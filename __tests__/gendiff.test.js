@@ -7,12 +7,12 @@ describe('Сравнение файлов', () => {
   const expectedFiles = {
     stylish: '__fixtures__/stylishExpected.txt',
     plain: '__fixtures__/plainExpected.txt',
-    json: '__fixtures__/jsonExpected.json'
+    json: '__fixtures__/jsonExpected.json',
   };
 
-  const testCases = formats.flatMap((format) =>
-    ['stylish', 'plain', 'json'].map((formatter) => [format, formatter])
-  );
+  const testCases = formats.flatMap((format) => ['stylish', 'plain', 'json'].map(
+    (formatter) => [format, formatter],
+  ));
 
   test.each(testCases)('Сравнение %s файлов с форматом вывода %s', (format, formatter) => {
     const file1 = `__fixtures__/test1.${format}`;

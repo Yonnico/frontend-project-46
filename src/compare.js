@@ -41,42 +41,43 @@ const createDiff = (key, keyPath, typeDifference, oldValue, newValue, children =
  * @returns {Difference[]} - Массив различий между объектами
  */
 const compare = (object1, object2, parentPath = []) => {
-  const keys1 = Object.keys(object1);
-  const keys2 = Object.keys(object2);
-  const keys = _.union(keys1, keys2).toSorted();
+  const keys = _.union(Object.keys(object1), Object.keys(object2)).toSorted();
 
-  return keys.map((key) => buildDifference(key, object1, object2, parentPath));
-};
+  const buildDifference = (key, path) => {
+    const currentPath = [...path, key].join('.');
 
-/**
- * @param {string} key - Ключ
- * @param {object} object1 - Первый объект для сравнения
- * @param {object} object2 - Второй объект для сравнения
- * @param {string[]} parentPath - Путь к родительскому ключу
- * @returns {Difference} - Объект с информацией о различии
- */
-const buildDifference = (key, object1, object2, parentPath) => {
-  const value1 = object1[key];
-  const value2 = object2[key];
-  const currentPath = [...parentPath, key];
-  const keyPath = currentPath.join('.');
+    if (key in object1 && !(key in object2)) {
+      return createDiff(key, currentPath, 'deleted', object1[key], null);
+    }
 
-  if (key in object1 && !(key in object2)) {
-    return createDiff(key, keyPath, 'deleted', value1, null);
-  }
+    if (!(key in object1) && key in object2) {
+      return createDiff(key, currentPath, 'added', null, object2[key]);
+    }
 
-  if (!(key in object1) && key in object2) {
-    return createDiff(key, keyPath, 'added', null, value2);
-  }
+    const isEqual = _.isEqual(object1[key], object2[key]);
+    const isBothObjects = _.isObject(object1[key]) && _.isObject(object2[key]);
 
-  const isEqual = _.isEqual(value1, value2);
-  const isBothObjects = _.isObject(value1) && _.isObject(value2);
+    if (!isEqual && isBothObjects) {
+      return createDiff(
+        key,
+        currentPath,
+        'changed',
+        object1[key],
+        object2[key],
+        compare(object1[key], object2[key], [...path, key])
+      );
+    }
 
-  if (!isEqual && isBothObjects) {
-    return createDiff(key, keyPath, 'changed', value1, value2, compare(value1, value2, currentPath));
-  }
+    return createDiff(
+      key,
+      currentPath,
+      isEqual ? 'unchanged' : 'changed',
+      object1[key],
+      object2[key]
+    );
+  };
 
-  return createDiff(key, keyPath, isEqual ? 'unchanged' : 'changed', value1, value2);
+  return keys.map((key) => buildDifference(key, parentPath));
 };
 
 export default compare;

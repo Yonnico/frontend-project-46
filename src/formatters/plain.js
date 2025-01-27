@@ -14,7 +14,7 @@ const plainFormatValue = (value) => {
   return value;
 };
 
-export const plain = (difference) => {
+const plain = (difference) => {
   const result = difference.map((object) => {
     if (object.typeDifference === 'unchanged') {
       return [];
