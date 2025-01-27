@@ -1,6 +1,6 @@
 import { fileParser } from './parsers.js';
-import { compare } from './compare.js';
-import { formatter } from './formatters/index.js';
+import compare from './compare.js';
+import formatter from './formatters/index.js';
 
 /**
  * @param {string} filepath1 - Путь к первому файлу
