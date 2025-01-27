@@ -1,4 +1,4 @@
-import { gendiff } from '../src/index.js';
+import gendiff from '../src/index.js';
 import { readFile } from '../src/parsers.js';
 import { describe, test, expect } from '@jest/globals';
 
