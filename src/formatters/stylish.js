@@ -5,17 +5,16 @@ import _ from 'lodash';
  * @param {number} depth - Глубина вложенности (по умолчанию 1)
  * @returns {string} - Строка с форматированным объектом
  */
-const stylishFormatValue = (value, depth = 1) => {
-
-  if (!_.isObject(value)) {
-    return value;
+const stylishFormatValue = (data, depth = 1) => {
+  if (!_.isObject(data)) {
+    return data;
   }
 
   const indentSize = 4;
   const currentIndent = ' '.repeat(depth * indentSize);
   const bracketIndent = ' '.repeat(((depth - 1) * indentSize));
 
-  const entries = Object.entries(value);
+  const entries = Object.entries(data);
 
   const result = entries.map(([key, value]) => {
     const valueStr = stylishFormatValue(value, depth + 1);
@@ -30,7 +29,7 @@ const stylishFormatValue = (value, depth = 1) => {
  * @param {number} depth - Глубина вложенности (по умолчанию 1)
  * @returns {string} - Строка с результатом сравнения в формате stylish
  */
-export const stylish = (difference, depth = 1) => {
+const stylish = (difference, depth = 1) => {
   const indentSize = 4;
   const indent = ' '.repeat((depth * indentSize) - 2);
   const bracketIndent = ' '.repeat(((depth - 1) * indentSize));
@@ -55,3 +54,5 @@ export const stylish = (difference, depth = 1) => {
 
   return `{\n${result.join('\n')}\n${bracketIndent}}`;
 };
+
+export default stylish;

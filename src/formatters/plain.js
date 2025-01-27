@@ -35,3 +35,5 @@ export const plain = (difference) => {
 
   return result.flat().join('\n');
 };
+
+export default plain;

@@ -10,7 +10,7 @@ import _ from 'lodash';
  * @typedef {object} Difference - Объект с информацией о различии
  * @property {string} key - Ключ
  * @property {string} keyPath - Путь к ключу
- * @property {'deleted' | 'added' | 'changed' | 'unchanged'} typeDifference - Тип различия (см. в compare.js)
+ * @property {'deleted' | 'added' | 'changed' | 'unchanged'} typeDifference - Тип (см. в compare.js)
  * @property {?unknown} oldValue - Значение в первом объекте
  * @property {?unknown} newValue - Значение во втором объекте
  * @property {?Difference[]} children - Дочерние элементы
@@ -19,7 +19,7 @@ import _ from 'lodash';
 /**
  * @param {string} key - Ключ
  * @param {string} keyPath - Путь к ключу
- * @param {'deleted' | 'added' | 'changed' | 'unchanged'} typeDifference - Тип различия между объектами
+ * @param {'deleted' | 'added' | 'changed' | 'unchanged'} typeDifference
  * @param {?unknown} oldValue - Значение в первом объекте
  * @param {?unknown} newValue - Значение во втором объекте
  * @param {?Difference[]} children - Дочерние элементы
@@ -33,6 +33,20 @@ const createDiff = (key, keyPath, typeDifference, oldValue, newValue, children =
   newValue,
   children,
 });
+
+/**
+ * @param {object} object1 - Первый объект для сравнения
+ * @param {object} object2 - Второй объект для сравнения
+ * @param {string[]} parentPath - Путь к родительскому ключу
+ * @returns {Difference[]} - Массив различий между объектами
+ */
+const compare = (object1, object2, parentPath = []) => {
+  const keys1 = Object.keys(object1);
+  const keys2 = Object.keys(object2);
+  const keys = _.union(keys1, keys2).toSorted();
+
+  return keys.map((key) => buildDifference(key, object1, object2, parentPath));
+};
 
 /**
  * @param {string} key - Ключ
@@ -65,16 +79,4 @@ const buildDifference = (key, object1, object2, parentPath) => {
   return createDiff(key, keyPath, isEqual ? 'unchanged' : 'changed', value1, value2);
 };
 
-/**
- * @param {object} object1 - Первый объект для сравнения
- * @param {object} object2 - Второй объект для сравнения
- * @param {string[]} parentPath - Путь к родительскому ключу
- * @returns {Difference[]} - Массив различий между объектами
- */
-export const compare = (object1, object2, parentPath = []) => {
-  const keys1 = Object.keys(object1);
-  const keys2 = Object.keys(object2);
-  const keys = _.union(keys1, keys2).toSorted();
-
-  return keys.map((key) => buildDifference(key, object1, object2, parentPath));
-};
+export default compare;

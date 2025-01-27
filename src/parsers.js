@@ -20,11 +20,10 @@ export const readFile = (filepath) => fs.readFileSync(getPath(filepath), 'utf-8'
  * @returns {object} - Содержимое файла
  */
 export const fileParser = (filepath) => {
-
   const parseTypes = {
     json: (content) => JSON.parse(content),
     yml: (content) => yaml.load(content),
-    yaml: (content) => yaml.load(content)
+    yaml: (content) => yaml.load(content),
   };
 
   const content = readFile(filepath);
@@ -33,4 +32,4 @@ export const fileParser = (filepath) => {
   const result = parseTypes[type](content);
 
   return result;
-}
+};
