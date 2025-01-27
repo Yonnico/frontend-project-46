@@ -10,8 +10,8 @@ import { json } from './json.js';
 export const formatter = (difference, format) => {
 
   const formatTypes = {
-    stylish: (difference) => `${stylish(difference)}\n`,
-    plain: (difference) => `${plain(difference)}\n`,
+    stylish: (difference) => stylish(difference),
+    plain: (difference) => plain(difference),
     json: (difference) => json(difference)
   };
 
